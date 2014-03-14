@@ -63,9 +63,6 @@ public class MainPhoneActivity extends SherlockActivity implements
 	private String filePath = Environment.getExternalStorageDirectory()
 			.toString() + "/sixclass/phone.dat";
 
-	// private String pwPath = Environment.getExternalStorageDirectory()
-	// .toString() + "/sixclass/pw.dat";
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
