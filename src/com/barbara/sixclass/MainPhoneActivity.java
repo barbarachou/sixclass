@@ -136,7 +136,6 @@ public class MainPhoneActivity extends SherlockActivity implements
 	}
 
 	class DownloadFileFromURL extends AsyncTask<String, String, String> {
-
 		@Override
 		protected void onPreExecute() {
 			progressDialog = ProgressDialog.show(MainPhoneActivity.this,
