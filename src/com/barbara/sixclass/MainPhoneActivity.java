@@ -114,7 +114,6 @@ public class MainPhoneActivity extends SherlockActivity implements
 
 	private void getPhoneNum(String str) {
 		pw = password.getString("psw", "");
-
 		if (pw.equals("")) {
 			final EditText et = new EditText(this);
 			new AlertDialog.Builder(this)
