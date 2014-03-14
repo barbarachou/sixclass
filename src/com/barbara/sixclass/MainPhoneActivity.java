@@ -80,7 +80,7 @@ public class MainPhoneActivity extends SherlockActivity implements
 		password = getSharedPreferences("password", 0);
 
 		getPhoneNum("请输入密码(您的学号)");
-		nums = getHotel(filePath);
+		nums = transList(filePath);
 		adapter = new PhoneAdapter(nums);
 		listView.setAdapter(adapter);
 
@@ -175,7 +175,7 @@ public class MainPhoneActivity extends SherlockActivity implements
 				editor.putString("psw", pw);
 				editor.commit();
 				// adapter.notifyDataSetChanged();
-				nums = getHotel(filePath);
+				nums = transList(filePath);
 				adapter = new PhoneAdapter(nums);
 				listView.setAdapter(adapter);
 			}
@@ -401,7 +401,7 @@ public class MainPhoneActivity extends SherlockActivity implements
 		return res;
 	}
 
-	private ArrayList<Phone> getHotel(String fileName) {
+	private ArrayList<Phone> transList(String fileName) {
 		String res = openFile(fileName);
 		ArrayList<Phone> list = new ArrayList<Phone>();
 		String name;
