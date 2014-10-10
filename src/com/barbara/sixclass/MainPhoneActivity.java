@@ -26,6 +26,8 @@ import com.umeng.fb.UMFeedbackService;
 import com.umeng.update.UmengDownloadListener;
 import com.umeng.update.UmengUpdateAgent;
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -33,6 +35,7 @@ import android.os.Environment;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -110,6 +113,10 @@ public class MainPhoneActivity extends SherlockActivity implements
 	}
 
 	private void getPhoneNum(String str) {
+		if(!isNetWork()){
+			Toast.makeText(this, "您的手机未开启网络", Toast.LENGTH_LONG).show();
+			return;
+		}
 		pw = password.getString("psw", "");
 		if (pw.equals("")) {
 			final EditText et = new EditText(this);
@@ -369,15 +376,15 @@ public class MainPhoneActivity extends SherlockActivity implements
 		}
 
 	}
-
-	@SuppressLint("SdCardPath")
-	public boolean fileIsExists() {
-		File f = new File("/sdcard/sixclass/phone.dat");
-		if (!f.exists()) {
-			return false;
-		}
-		return true;
-	}
+//
+//	@SuppressLint("SdCardPath")
+//	public boolean fileIsExists() {
+//		File f = new File("/sdcard/sixclass/phone.dat");
+//		if (!f.exists()) {
+//			return false;
+//		}
+//		return true;
+//	}
 
 	public void gotofb() {
 		UMFeedbackService.openUmengFeedbackSDK(this);
@@ -429,6 +436,16 @@ public class MainPhoneActivity extends SherlockActivity implements
 		return list;
 	}
 
+    private boolean isNetWork(){
+    	ConnectivityManager cManager=(ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE); 
+    	NetworkInfo info = cManager.getActiveNetworkInfo(); 
+    	  if (info != null && info.isAvailable()){ 
+    	        return true; 
+    	  }else{ 
+    	        return false; 
+    	  } 
+    }
+    
 	@Override
 	public void onResume() {
 		super.onResume();
